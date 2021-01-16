@@ -30,4 +30,4 @@ fabric_lineups_long <- mutate(fabric_lineups_long, day = wday(event_date, label 
 fabric_artists <- distinct(fabric_lineups_long, artist_name, artist_id)
 
 write_csv(fabric_lineups_long, "data-raw/bookings.csv")
-write_csv(fabric_lineups_long, "data-raw/artists.csv")
+write_csv(fabric_artists, "data-raw/artists.csv")
