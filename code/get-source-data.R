@@ -48,5 +48,5 @@ fabric_artists <- fabric_lineups_long %>%
 
 # export ------------------------------------------------------------------
 
-write_csv(fabric_lineups_long, "data-raw/bookings.csv")
-write_csv(fabric_artists, "data-raw/artist-lookup.csv")
+write_csv(fabric_lineups_long, "data/bookings.csv")
+write_csv(fabric_artists, "data/artists.csv")
