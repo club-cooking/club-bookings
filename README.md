@@ -3,9 +3,13 @@
 
 Data and code used in the *who play's fabric* project.
 
-## data
+## related work
 
-This folder contains processed data files, detailed below.
+Data is sourced from the [ldn-venues](https://github.com/club-cooking/ldn-venues) project.
+
+## data-raw
+
+This folder contains raw data files, detailed below.
 
 ### `bookings.csv`
 
@@ -26,7 +30,7 @@ Data dictionary:
 
 ### `artist-lookup.csv`
 
-2,762 artists who have played at fabric bookings (2012-2020). 
+2,762 artists who have played at fabric (2012-2020). 
 
 Data dictionary:
 
