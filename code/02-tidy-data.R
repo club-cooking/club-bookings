@@ -54,13 +54,13 @@ clubs_df <- clubs %>%
 artists <- lineups_club_df[sapply(lineups_club_df$artists, length) == 2, ] %>% # remove bad events
   unnest(artists) %>%
   mutate(across(c(artist_name, artist_id), ~unlist(.x))) %>%
-  select(artist_id, artist_name)
+  select(artist_id, artist_name, event_id, club_id=venue_id)
 
 # create promoter-level df
 promoters <- lineups_club_df[sapply(lineups_club_df$promoters, length) == 2, ] %>% # remove bad events
   unnest(promoters) %>%
   mutate(across(c(promoter_name, promoter_id), ~unlist(.x))) %>%
-  select(promoter_id, promoter_name)
+  select(promoter_id, promoter_name, event_id, club_id=venue_id)
 
 # export ------------------------------------------------------------------
 
