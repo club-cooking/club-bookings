@@ -78,4 +78,4 @@ Follow numeric prefix for the correct order of running each .R script:
 
 ## config
 
-Config files to change the behaviour of the scraper, specifically the detailed event info (i.e. lineups). Edit `club-lineups-config.csv` if you want to pull line-ups for different clubs.
+Config files to change the behaviour of the scraper, specifically the detailed event info (i.e. lineups). Edit `club-config.yml` if you want to pull line-ups for different clubs.

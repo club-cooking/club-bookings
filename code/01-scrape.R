@@ -9,12 +9,15 @@ library(tidyr)
 library(purrr)
 library(furrr)
 library(glue)
+library(readr)
+library(yaml)
 
 # get local functions
 source("utils/functions.R")
 
 # get selected clubs' lineup history
-club_config <- read_csv("config/club-lineups-config.csv")
+club_config <- read_yaml("config/club-config.yml") %>% 
+  bind_rows()
 
 # get clubs ---------------------------------------------------------------
 
