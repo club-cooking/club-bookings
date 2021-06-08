@@ -36,17 +36,19 @@ lineups_club_df <- lineups_club_df %>%
 # create events dataframe
 events_df <- future_map_dfr(events, function(x){
   df <- x[["events"]]
-  df$club_id <- as.numeric(x[["club_id"]])
+  df$club_id <- as.character(as.numeric(x[["club_id"]]))
   df
 })
 events_df <- events_df[!sapply(events_df$event_id, is.null), ] # remove bad events
 events_df <- mutate_all(events_df, unlist)
 events_df$event_date <- as.Date(events_df$event_date)
+events_df$event_id <- as.character(events_df$event_id)
 events_df <- dplyr::filter(events_df, club_id %in% unique(lineups_club_df$venue_id))
 
 # create club-level dataframe
 clubs_df <- clubs %>%
   mutate_all(unlist) %>%
+  mutate(club_id = as.character(club_id)) %>% 
   select(club_id, everything()) %>% 
   dplyr::filter(club_id %in% unique(lineups_club_df$venue_id))
 
@@ -54,13 +56,17 @@ clubs_df <- clubs %>%
 artists <- lineups_club_df[sapply(lineups_club_df$artists, length) == 2, ] %>% # remove bad events
   unnest(artists) %>%
   mutate(across(c(artist_name, artist_id), ~unlist(.x))) %>%
-  select(artist_id, artist_name, event_id, club_id=venue_id)
+  select(artist_id, artist_name, event_id, club_id=venue_id) %>% 
+  mutate(club_id = as.character(club_id), event_id = as.character(event_id),
+         artist_id = as.character(artist_id))
 
 # create promoter-level df
 promoters <- lineups_club_df[sapply(lineups_club_df$promoters, length) == 2, ] %>% # remove bad events
   unnest(promoters) %>%
   mutate(across(c(promoter_name, promoter_id), ~unlist(.x))) %>%
-  select(promoter_id, promoter_name, event_id, club_id=venue_id)
+  select(promoter_id, promoter_name, event_id, club_id=venue_id) %>% 
+  mutate(club_id = as.character(club_id), event_id = as.character(event_id),
+         promoter_id = as.character(promoter_id))
 
 # export ------------------------------------------------------------------
 
